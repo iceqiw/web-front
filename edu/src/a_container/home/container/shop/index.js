@@ -57,7 +57,7 @@ export default class Shop extends React.Component {
                     hoverable
                     cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
                   >
-                    <Link to={`/Home/Page2/${index}`} >
+                    <Link to={`/Home/UserDetail/${index}`} >
                       <Meta
                         title="Europe Street beat"
                         description="www.instagram.com"

@@ -8,8 +8,11 @@ const webpackHotMiddleware = require("webpack-hot-middleware"); // HMR热更新�
 const webpackConfig = require("./webpack.dev.config.js"); // webpack开发环境的配置文件
 
 const proxyMiddleWare = require("http-proxy-middleware");
-const proxyPath = "http://localhost:8087";//目标后端服务地址(公司同事电脑地址)
-const proxyOption ={target:proxyPath,changeOrigoin:true};
+const proxyPathHome = "http://localhost:8080";//目标后端服务地址(公司同事电脑地址)
+const proxyOptionHome ={target:proxyPathHome,changeOrigoin:true};
+
+const proxyPathUser = "http://localhost:8087";//目标后端服务地址(公司同事电脑地址)
+const proxyOptionUser ={target:proxyPathUser,changeOrigoin:true};
 
 const mock = require("./mock/mock-data"); // mock模拟数据，模拟后台业务
 
@@ -41,7 +44,9 @@ if (env === "production") {
   app.use(webpackHotMiddleware(compiler));
 }
 
-app.use("/api",proxyMiddleWare(proxyOption))//这里要注意"/tech" 是匹配的路由,它会将匹配的路由进行转发，没匹配到的就不会转发。('/discern'完全可以写成'/'就是说所有路由都可以访问)
+app.use("/api/user",proxyMiddleWare(proxyOptionUser))//这里要注意"/tech" 是匹配的路由,它会将匹配的路由进行转发，没匹配到的就不会转发。('/discern'完全可以写成'/'就是说所有路由都可以访问)
+app.use("/api/tech",proxyMiddleWare(proxyOptionHome))
+
 
 /** 启动服务 **/
 app.listen(PORT, () => {

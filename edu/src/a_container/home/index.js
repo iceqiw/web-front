@@ -16,7 +16,7 @@ const { Header, Content, Footer, Sider } = Layout;
 // ==================
 import css from "./index.less";
 import Shop from "./container/shop"; // 子页面1
-import Page2 from "./container/page2"; // 子页面2
+import UserDetail from "./container/page2"; // 子页面2
 import Page3 from "./container/page3"; // 子页面3
 
 // ==================
@@ -37,6 +37,14 @@ export default class HomePageContainer extends React.Component {
     super(props);
     this.state = {};
   }
+
+  renderLogin() {
+    if (sessionStorage.getItem("token")) {
+      return (<NavLink to="/User" ><Icon type="profile" /></NavLink>);
+    }
+    return (<NavLink to="/Login" ><Icon type="user" /></NavLink>);
+  }
+
   render() {
     return (
       <div>
@@ -47,10 +55,7 @@ export default class HomePageContainer extends React.Component {
                 <NavLink to={`${this.props.match.url}/Shop`}><Icon type="home" /></NavLink>
               </Col>
               <Col xs={4} md={1}>
-                <NavLink to="/Login" ><Icon type="user" /></NavLink>
-              </Col>
-              <Col xs={4} md={1}>
-                <NavLink to="/Login" ><Icon type="profile" /></NavLink>
+                {this.renderLogin()}
               </Col>
             </Row>
           </Header>
@@ -69,15 +74,12 @@ export default class HomePageContainer extends React.Component {
                 />
                 <Route
                   exact
-                  path={`${this.props.match.url}/Page2/:id`}
-                  component={Page2}
+                  path={`${this.props.match.url}/UserDetail/:id`}
+                  component={UserDetail}
                 />
               </Switch>
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center'}}>
-            tech ©2018 Created by qiwei
-          </Footer>
         </Layout>
       </div>
     );
