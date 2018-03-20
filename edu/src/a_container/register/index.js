@@ -62,10 +62,12 @@ export default class RegisterPageContainer extends React.Component {
       }
     });
   }
+
   handleConfirmBlur = (e) => {
     const value = e.target.value;
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
   }
+
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
@@ -106,14 +108,6 @@ export default class RegisterPageContainer extends React.Component {
         },
       },
     };
-    const prefixSelector = getFieldDecorator('prefix', {
-      initialValue: '86',
-    })(
-      <Select style={{ width: 70 }}>
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-      );
     return (
       <div>
         <Layout>
@@ -195,7 +189,7 @@ export default class RegisterPageContainer extends React.Component {
                   {getFieldDecorator('telphone', {
                     rules: [{ required: true, message: 'Please input your phone number!' }],
                   })(
-                    <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+                    <Input  style={{ width: '100%' }} />
                     )}
                 </FormItem>
                 <FormItem {...tailFormItemLayout}>

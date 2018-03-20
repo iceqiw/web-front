@@ -17,50 +17,49 @@ import styles from "./index.less";
 // 组件
 // ==================
 @connect(
-  state => ({}),
+  state => ({
+    items:state.app.items
+  }),
   dispatch => ({
     actions: bindActionCreators({ actIndex }, dispatch)
   })
 )
 export default class Shop extends React.Component {
   static propTypes = {
+    items:P.array,
     actions: P.any
   };
 
   constructor(props) {
     super(props);
-    this.state = {
-      names: ['kitty', 'mary', 'king']
-    };
+
   }
 
-  submitLogin(e) {
-    this.props.actions.actIndex().then(res => {
-      console.log(res);
-      message.info(res.realName)
-    });
+  componentWillMount() {
+    this.props.actions.actIndex()
   }
+
   render() {
     return (
       <div>
         <Row type="flex" align="middle" justify="center">
           <Col xs={24} md={12}>
-            <Search placeholder="input search text" enterButton="Search" size="large"/>
+            <Search placeholder="input search text" enterButton="Search" size="large" />
           </Col>
         </Row>
         <div style={{ background: '#fff', margin: 24 }}>
           <Row type="flex" align="middle" justify="start" >
-            {this.state.names.map((item, index) => (
+            {this.props.items.map((item, index) => (
               <Col key={index} xs={24} md={6}>
                 <div style={{ background: '#fff', margin: 12 }} >
                   <Card
                     hoverable
-                    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                    cover={<img alt="example" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1062989499,1682648318&fm=58" />}
                   >
                     <Link to={`/Home/UserDetail/${index}`} >
                       <Meta
-                        title="Europe Street beat"
-                        description="www.instagram.com"
+                        title={item.id}
+                        description={item.title}
                       />
                     </Link>
                   </Card>

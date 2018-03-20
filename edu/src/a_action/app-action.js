@@ -24,12 +24,13 @@ export const actLogin = (params = {}) => async dispatch => {
 /** 异步请求测试 fetch **/
 export const actIndex = (params = {}) => async dispatch => {
   try {
-    const res = await Fetchapi.newFetchGet("/api/tech/index/1");
+    const res = await Fetchapi.newFetchGet("/api/tech/index/list");
+    console.log(res)
     dispatch({
-      type: "TEST::fetch",
-      payload: res.data
+      type: "List::items",
+      payload: res.data.apiData.content
     });
-    return res.data;
+    return res.apiData;
   } catch (err) {
     message.error("服务器开小差了");
   }
