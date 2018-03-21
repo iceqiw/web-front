@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
 import P from "prop-types";
 import { Button, message, Card, Row, Col, Input } from 'antd';
+
 const Search = Input.Search;
 const { Meta } = Card;
 
@@ -54,12 +55,12 @@ export default class Shop extends React.Component {
                 <div style={{ background: '#fff', margin: 12 }} >
                   <Card
                     hoverable
-                    cover={<img alt="example" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1062989499,1682648318&fm=58" />}
+                    cover={<img alt="example"  className={styles.img} src={item.imgUrl} />}
                   >
                     <Link to={`/Home/UserDetail/${index}`} >
                       <Meta
-                        title={item.id}
-                        description={item.title}
+                        title={item.title}
+                        description={item.price}
                       />
                     </Link>
                   </Card>
