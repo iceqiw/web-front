@@ -57,12 +57,12 @@ export default class Shop extends React.Component {
                     hoverable
                     cover={<img alt="example"  className={styles.img} src={item.imgUrl} />}
                   >
-                    <Link to={`/Home/UserDetail/${index}`} >
+                    <a href={item.url} >
                       <Meta
                         title={item.title}
                         description={item.price}
                       />
-                    </Link>
+                    </a>
                   </Card>
                 </div>
               </Col>
