@@ -11,7 +11,7 @@ export const actLogin = (params = {}) => async dispatch => {
   try {
     const res = await Fetchapi.newFetchPost("/api/user/login", params);
     dispatch({
-      type: "TEST::fetch",
+      type: "ACT::login",
       payload: res.data
     });
     return res.data;
@@ -24,11 +24,27 @@ export const actLogin = (params = {}) => async dispatch => {
 /** 异步请求测试 fetch **/
 export const actIndex = (params = {}) => async dispatch => {
   try {
-    const res = await Fetchapi.newFetchGet("/api/tech/index/list");
-    console.log(res)
+    const res = await Fetchapi.newFetchGet("/api/tech/index/pageall/"+params.pn);
     dispatch({
-      type: "List::items",
-      payload: res.data.apiData.content
+      type: "Page::items",
+      payload: res.data.apiData
+    });
+    return res.apiData;
+  } catch (err) {
+    message.error("服务器开小差了");
+  }
+};
+
+export const actSearch = (params = {}) => async dispatch => {
+  try {
+    dispatch({
+      type: "Search::key",
+      payload: params.key
+    });
+    const res = await Fetchapi.newFetchGet("/api/tech/index/page/"+params.key+"/"+params.pn);
+    dispatch({
+      type: "Page::items",
+      payload: res.data.apiData
     });
     return res.apiData;
   } catch (err) {
