@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
 import P from "prop-types";
-import { Button, message, Card, Row, Col, Input, Pagination } from 'antd';
+import { Button, message, Card, Row, Col, Input, Pagination,Carousel } from 'antd';
 
 const Search = Input.Search;
 const { Meta } = Card;
@@ -66,9 +66,11 @@ export default class Shop extends React.Component {
         <Row type="flex" align="middle" justify="center">
           <Col xs={24} md={12}>
             <Search placeholder="input search text" enterButton="搜索" size="large" onSearch={this.onSearch.bind(this)} />
-            <h1>MAX:{this.props.max}</h1>
-            <h1>AVG:{this.props.avg}</h1>
-            <h1>MIN:{this.props.min}</h1>
+            <Carousel autoplay>
+              <div><h1>MAX:{this.props.max}</h1></div>
+              <div><h1>AVG:{this.props.avg}</h1></div>
+              <div><h1>MIN:{this.props.min}</h1></div>
+            </Carousel>
           </Col>
         </Row>
         <div style={{ background: '#fff', margin: 24 }}>
@@ -76,18 +78,16 @@ export default class Shop extends React.Component {
             {this.props.content.map((item, index) => (
               <Col key={index} xs={24} md={6}>
                 <div style={{ background: '#fff', margin: 12 }} >
-                  <Card
-                    hoverable
-                    cover={<img alt="example" className={styles.img} src={item.img} />}
-                  >
-                    <a href={item.link} >
+                <Card title={item.datetime}  style={{ width: 300 }}>
+                  <p>{item.price+"（元/平米）"}</p>
+                  <a href={item.link} >
                       <Meta
-                        title={item.name}
-                        description={item.price+"（元/平米）"}
+                        title={item.price_total+"万"}
+                        description={item.name  }
                       />
-                      <em>{item.price_total+"万"}</em>
-                    </a>
-                  </Card>
+                      <em>{item.village}</em>
+                  </a>
+                </Card>
                 </div>
               </Col>
             ))}
