@@ -24,12 +24,12 @@ export const actLogin = (params = {}) => async dispatch => {
 /** 异步请求测试 fetch **/
 export const actIndex = (params = {}) => async dispatch => {
   try {
-    const res = await Fetchapi.newFetchGet("/api/tech/index/pageall/"+params.pn);
+    const res = await Fetchapi.newFetchGet("/api/ds/page/1/10");
     dispatch({
       type: "Page::items",
-      payload: res.data.apiData
+      payload: res.data
     });
-    return res.apiData;
+    return res.data;
   } catch (err) {
     message.error("服务器开小差了");
   }
@@ -41,12 +41,12 @@ export const actSearch = (params = {}) => async dispatch => {
       type: "Search::key",
       payload: params.key
     });
-    const res = await Fetchapi.newFetchGet("/api/tech/index/page/"+params.key+"/"+params.pn);
+    const res = await Fetchapi.newFetchGet("/api/ds/page/"+params.pn+"/10");
     dispatch({
       type: "Page::items",
-      payload: res.data.apiData
+      payload: res.data
     });
-    return res.apiData;
+    return res.data;
   } catch (err) {
     message.error("服务器开小差了");
   }

@@ -30,10 +30,10 @@ const allItems = (state, action) => {
 const pageItems = (state, action) => {
   const { payload } = action;
   return Object.assign({}, state, {
-    items: payload.content,
-    totalSize: payload.totalSize,
-    pageSize: payload.pageSize,
-    pageNum: payload.pageNum
+    items: payload.context,
+    totalSize: payload.total,
+    pageSize: payload.size,
+    pageNum: payload.page
   });
 };
 

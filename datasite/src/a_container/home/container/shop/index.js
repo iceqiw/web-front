@@ -79,13 +79,14 @@ export default class Shop extends React.Component {
                 <div style={{ background: '#fff', margin: 12 }} >
                   <Card
                     hoverable
-                    cover={<img alt="example" className={styles.img} src={item.imgUrl} />}
+                    cover={<img alt="example" className={styles.img} src={item.img} />}
                   >
-                    <a href={item.url} >
+                    <a href={item.link} >
                       <Meta
-                        title={item.title}
-                        description={item.price}
+                        title={item.name}
+                        description={item.price+"（元/平米）"}
                       />
+                      <em>{item.price_total+"万"}</em>
                     </a>
                   </Card>
                 </div>
@@ -93,7 +94,7 @@ export default class Shop extends React.Component {
             ))}
           </Row>
           <Row type="flex" align="middle" justify="center">
-            <Pagination simple current={this.props.pageNum} total={this.props.totalSize} onChange={this.onChange} pageSize={this.props.pageSize} />
+            <Pagination  current={this.props.pageNum} total={this.props.totalSize} onChange={this.onChange} pageSize={this.props.pageSize} />
           </Row>
         </div>
       </div>
