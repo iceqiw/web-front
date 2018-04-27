@@ -23,7 +23,9 @@ import styles from "./index.less";
     pageSize: state.app.pageSize,
     pageNum: state.app.pageNum,
     content: state.app.items,
-    searchKey: state.app.searchKey
+    max: state.app.max,
+    avg: state.app.avg,
+    min: state.app.min
   }),
   dispatch => ({
     actions: bindActionCreators({ actIndex, actSearch }, dispatch)
@@ -36,32 +38,26 @@ export default class Shop extends React.Component {
     pageSize: P.number,
     totalSize: P.number,
     pageNum: P.number,
-    searchKey: P.string
+    max: P.any,
+    min: P.any,
+    avg: P.any,
   };
 
   constructor(props) {
     super(props);
-
   }
 
   componentWillMount() {
     this.props.actions.actIndex({ pn: 1 })
+    this.props.actions.actSearch()
   }
 
   onChange = (pageNumber) => {
-    if (this.props.searchKey) {
-      this.props.actions.actSearch({ pn: pageNumber, key: this.props.searchKey })
-    } else {
-      this.props.actions.actIndex({ pn: pageNumber })
-    }
+    this.props.actions.actIndex({ pn: pageNumber })
   }
 
   onSearch = (key) => {
-    console.log('onSearch: ', key);
-    this.props.actions.actSearch({ pn: 1, key: key })
-    this.setState({
-      current: 1
-    })
+    this.props.actions.actIndex({ pn: 1 })
   }
 
   render() {
@@ -70,6 +66,9 @@ export default class Shop extends React.Component {
         <Row type="flex" align="middle" justify="center">
           <Col xs={24} md={12}>
             <Search placeholder="input search text" enterButton="搜索" size="large" onSearch={this.onSearch.bind(this)} />
+            <h1>MAX:{this.props.max}</h1>
+            <h1>AVG:{this.props.avg}</h1>
+            <h1>MIN:{this.props.min}</h1>
           </Col>
         </Row>
         <div style={{ background: '#fff', margin: 24 }}>

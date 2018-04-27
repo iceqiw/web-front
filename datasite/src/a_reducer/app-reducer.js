@@ -7,7 +7,9 @@ const initState = {
   items: [],
   totalSize: 0,
   pageNum: 1,
-  searchKey: ""
+  max: 0,
+  avg: 0,
+  min: 0
 };
 
 /** 对应的reducer处理函数，改变store中的值 **/
@@ -39,8 +41,11 @@ const pageItems = (state, action) => {
 
 const searchItems = (state, action) => {
   const { payload } = action;
+  console.log(payload)
   return Object.assign({}, state, {
-    searchKey: payload
+    max: payload.max+"元/平米     ----max总价  "+payload.total_max+"万",
+    avg: payload.avg+"元/平米     ----avg总价  "+payload.total_avg+"万",
+    min: payload.min+"元/平米     ----min总价  "+payload.total_min+"万"
   });
 };
 
@@ -53,7 +58,7 @@ const reducerFn = (state = initState, action) => {
       return allItems(state, action);
     case "Page::items": // 测试页 - 保存异步请求的数据
       return pageItems(state, action);
-    case "Search::key": // 测试页 - 保存异步请求的数据
+    case "Total::info": // 测试页 - 保存异步请求的数据
       return searchItems(state, action);
     default:
       return actDefault(state, action);

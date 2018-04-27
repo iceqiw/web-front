@@ -24,7 +24,7 @@ export const actLogin = (params = {}) => async dispatch => {
 /** 异步请求测试 fetch **/
 export const actIndex = (params = {}) => async dispatch => {
   try {
-    const res = await Fetchapi.newFetchGet("/api/ds/page/1/10");
+    const res = await Fetchapi.newFetchGet("/api/ds/page/"+params.pn+"/10");
     dispatch({
       type: "Page::items",
       payload: res.data
@@ -37,13 +37,9 @@ export const actIndex = (params = {}) => async dispatch => {
 
 export const actSearch = (params = {}) => async dispatch => {
   try {
+    const res = await Fetchapi.newFetchGet("/api/ds/totalInfo");
     dispatch({
-      type: "Search::key",
-      payload: params.key
-    });
-    const res = await Fetchapi.newFetchGet("/api/ds/page/"+params.pn+"/10");
-    dispatch({
-      type: "Page::items",
+      type: "Total::info",
       payload: res.data
     });
     return res.data;
