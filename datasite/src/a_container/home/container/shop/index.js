@@ -86,18 +86,18 @@ export default class Shop extends React.Component {
             {this.props.content.map((item, index) => (
               <Col key={index} xs={24} md={6}>
                 <div style={{ background: '#fff', margin: 12 }} >
-                  <a href={item.link} >
-                    <Card title={item.price_total+"万"}>
+                  <Card title={item.price_total+"万"}>
                       <p>单价：{item.price+"(元/平米)"}</p>
                       <p>租金：{item.rent+"(元/月)"}</p>
                       <p>小区：{item.village}</p>
                       <p>楼层：{item.floor}</p>
                       <p>面积：{item.acreage+"平米"}</p>
-                      <p>介绍：{item.name}({item.datetime})</p>
+                      <a href={item.link} >
+                       <p>介绍：{item.name}({item.datetime})</p>
+                      </a>
+                      <Button type="danger" onClick={this.delHouse.bind(this,item.id)}>删除</Button>
                     </Card>
-                  </a>
-                  <Button type="danger" onClick={this.delHouse.bind(this,item.id)}>删除</Button>
-                </div>
+                  </div>
               </Col>
             ))}
           </Row>
