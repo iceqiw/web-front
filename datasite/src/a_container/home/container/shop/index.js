@@ -54,10 +54,12 @@ export default class Shop extends React.Component {
 
   onChange = (pageNumber) => {
     this.props.actions.actIndex({ pn: pageNumber })
+    this.props.actions.actSearch()
   }
 
   onSearch = (key) => {
     this.props.actions.actIndex({ pn: 1 })
+    this.props.actions.actSearch()
   }
 
   render() {
