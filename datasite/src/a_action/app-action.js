@@ -69,6 +69,7 @@ export const actDelHouse = (params = {}) => async dispatch => {
       type: "Page::items",
       payload: res.data
     });
+    message.info("删除成功");
     return res.data;
   } catch (err) {
     message.error("服务器开小差了");
