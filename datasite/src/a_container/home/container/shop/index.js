@@ -66,10 +66,10 @@ export default class Shop extends React.Component {
         <Row type="flex" align="middle" justify="center">
           <Col xs={24} md={12}>
             <Search placeholder="input search text" enterButton="搜索" size="large" onSearch={this.onSearch.bind(this)} />
-            <Carousel autoplay>
-              <div><h1>MAX:{this.props.max}</h1></div>
-              <div><h1>AVG:{this.props.avg}</h1></div>
-              <div><h1>MIN:{this.props.min}</h1></div>
+            <Carousel  className={styles.mycarousel} autoplay>
+              <div><h3>MAX:{this.props.max}</h3></div>
+              <div><h3>AVG:{this.props.avg}</h3></div>
+              <div><h3>MIN:{this.props.min}</h3></div>
             </Carousel>
           </Col>
         </Row>
@@ -78,16 +78,17 @@ export default class Shop extends React.Component {
             {this.props.content.map((item, index) => (
               <Col key={index} xs={24} md={6}>
                 <div style={{ background: '#fff', margin: 12 }} >
-                <Card title={item.datetime}  style={{ width: 300 }}>
+                <a href={item.link} >
+                <Card title={item.price_total+"万"}>
+               
                   <p>{item.price+"（元/平米）"}</p>
-                  <a href={item.link} >
                       <Meta
-                        title={item.price_total+"万"}
+                        title={item.price_total+"平米"}
                         description={item.name  }
                       />
                       <em>{item.village}</em>
-                  </a>
                 </Card>
+                </a>
                 </div>
               </Col>
             ))}
