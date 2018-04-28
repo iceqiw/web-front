@@ -46,4 +46,16 @@ export default class ApiService {
       }
     });
   }
+
+    /** fetch请求(用的axios.js) **/
+    static newFetchDel(url) {
+      return axios({
+      url,
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+        "token":sessionStorage.getItem("token")
+      }
+    });
+  }
 }

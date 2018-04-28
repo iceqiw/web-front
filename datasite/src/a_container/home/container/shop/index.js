@@ -11,7 +11,7 @@ const { Meta } = Card;
 // ==================
 // 本页面所需actions
 // ==================
-import { actIndex, actSearch,actVillageList } from "../../../../a_action/app-action";
+import { actIndex, actSearch,actVillageList,actDelHouse } from "../../../../a_action/app-action";
 
 import styles from "./index.less";
 // ==================
@@ -27,7 +27,7 @@ import styles from "./index.less";
     totalinfo: state.app.totalinfo
   }),
   dispatch => ({
-    actions: bindActionCreators({ actIndex, actSearch ,actVillageList}, dispatch)
+    actions: bindActionCreators({ actIndex, actSearch ,actVillageList,actDelHouse}, dispatch)
   })
 )
 export default class Shop extends React.Component {
@@ -55,6 +55,11 @@ export default class Shop extends React.Component {
     this.props.actions.actIndex({ pn: pageNumber })
     this.props.actions.actSearch()
   }
+
+  delHouse = (id) => {
+    this.props.actions.actDelHouse({ id: id })
+  }
+
   render() {
     return (
       <div>
@@ -68,8 +73,8 @@ export default class Shop extends React.Component {
             </Col>
         </Row>
         <Row type="flex" align="middle" justify="center">
-          <Col xs={24} md={12}>
-            <Carousel  className={styles.mycarousel} autoplay>
+          <Col  onClick={this.onChange.bind(this,1)}  xs={24} md={12}>
+            <Carousel className={styles.mycarousel} autoplay>
               <div><h2>单价MAX:{this.props.totalinfo.max}(元/平米)</h2></div>
               <div><h2>单价MIN:{this.props.totalinfo.min}(元/平米)</h2></div>
               <div><h2>单价AVG:{this.props.totalinfo.min}(元/平米)</h2></div>
@@ -89,6 +94,7 @@ export default class Shop extends React.Component {
                       <p>楼层：{item.floor}</p>
                       <p>面积：{item.acreage+"平米"}</p>
                       <p>介绍：{item.name}({item.datetime})</p>
+                      <Button type="danger" onClick={this.delHouse.bind(this,item.id)}>删除</Button>
                     </Card>
                   </a>
                 </div>

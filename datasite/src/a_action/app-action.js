@@ -61,6 +61,15 @@ export const actVillageList = (params = {}) => async dispatch => {
   }
 };
 
+export const actDelHouse = (params = {}) => async dispatch => {
+  try {
+    const res = await Fetchapi.newFetchDel("/api/ds/info/"+params.id);
+    return res.data;
+  } catch (err) {
+    message.error("服务器开小差了");
+  }
+};
+
 /** 异步请求测试 fetch **/
 export const actReg = (params = {}) => async dispatch => {
   try {
