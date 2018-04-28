@@ -11,7 +11,7 @@ const { Meta } = Card;
 // ==================
 // 本页面所需actions
 // ==================
-import { actIndex, actSearch } from "../../../../a_action/app-action";
+import { actIndex, actSearch,actVillageList } from "../../../../a_action/app-action";
 
 import styles from "./index.less";
 // ==================
@@ -23,24 +23,22 @@ import styles from "./index.less";
     pageSize: state.app.pageSize,
     pageNum: state.app.pageNum,
     content: state.app.items,
-    max: state.app.max,
-    avg: state.app.avg,
-    min: state.app.min
+    villages: state.app.villages,
+    totalinfo: state.app.totalinfo
   }),
   dispatch => ({
-    actions: bindActionCreators({ actIndex, actSearch }, dispatch)
+    actions: bindActionCreators({ actIndex, actSearch ,actVillageList}, dispatch)
   })
 )
 export default class Shop extends React.Component {
   static propTypes = {
     content: P.array,
+    villages: P.array,
     actions: P.any,
     pageSize: P.number,
     totalSize: P.number,
     pageNum: P.number,
-    max: P.any,
-    min: P.any,
-    avg: P.any,
+    totalinfo: P.any
   };
 
   constructor(props) {
@@ -50,27 +48,31 @@ export default class Shop extends React.Component {
   componentWillMount() {
     this.props.actions.actIndex({ pn: 1 })
     this.props.actions.actSearch()
+    this.props.actions.actVillageList()
   }
 
   onChange = (pageNumber) => {
     this.props.actions.actIndex({ pn: pageNumber })
     this.props.actions.actSearch()
   }
-
-  onSearch = (key) => {
-    this.props.actions.actIndex({ pn: 1 })
-    this.props.actions.actSearch()
-  }
   render() {
     return (
       <div>
         <Row type="flex" align="middle" justify="center">
+            <Col xs={24} md={12}>
+              <Carousel  className={styles.mycarousel2} autoplay>
+                {this.props.villages.map((village, index) => (
+                  <div key={index} ><h2>{village}</h2></div>
+                ))}
+              </Carousel>
+            </Col>
+        </Row>
+        <Row type="flex" align="middle" justify="center">
           <Col xs={24} md={12}>
-            <Search placeholder="input search text" enterButton="搜索" size="large" onSearch={this.onSearch.bind(this)} />
             <Carousel  className={styles.mycarousel} autoplay>
-              <div><h3>MAX:{this.props.max}</h3></div>
-              <div><h3>AVG:{this.props.avg}</h3></div>
-              <div><h3>MIN:{this.props.min}</h3></div>
+              <div><h2>单价MAX:{this.props.totalinfo.max}(元/平米)</h2></div>
+              <div><h2>单价MIN:{this.props.totalinfo.min}(元/平米)</h2></div>
+              <div><h2>单价AVG:{this.props.totalinfo.min}(元/平米)</h2></div>
             </Carousel>
           </Col>
         </Row>
@@ -79,19 +81,16 @@ export default class Shop extends React.Component {
             {this.props.content.map((item, index) => (
               <Col key={index} xs={24} md={6}>
                 <div style={{ background: '#fff', margin: 12 }} >
-                <a href={item.link} >
-               
-                <Card title={item.price_total+"万"}>
-                  <p>{item.price+"（元/平米）"}</p>
-                  <p>{item.rent+"(元/月)"}</p>
-                  <Meta
-                    title={item.acreage+"平米"}
-                    description={item.name  }
-                  />
-                  <em>{item.village}</em>
-                </Card>
-               
-                </a>
+                  <a href={item.link} >
+                    <Card title={item.price_total+"万"}>
+                      <p>单价：{item.price+"(元/平米)"}</p>
+                      <p>租金：{item.rent+"(元/月)"}</p>
+                      <p>小区：{item.village}</p>
+                      <p>楼层：{item.floor}</p>
+                      <p>面积：{item.acreage+"平米"}</p>
+                      <p>介绍：{item.name}({item.datetime})</p>
+                    </Card>
+                  </a>
                 </div>
               </Col>
             ))}

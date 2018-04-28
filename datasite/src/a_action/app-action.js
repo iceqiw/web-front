@@ -48,6 +48,19 @@ export const actSearch = (params = {}) => async dispatch => {
   }
 };
 
+export const actVillageList = (params = {}) => async dispatch => {
+  try {
+    const res = await Fetchapi.newFetchGet("/api/ds/villages");
+    dispatch({
+      type: "Village::list",
+      payload: res.data
+    });
+    return res.data;
+  } catch (err) {
+    message.error("服务器开小差了");
+  }
+};
+
 /** 异步请求测试 fetch **/
 export const actReg = (params = {}) => async dispatch => {
   try {
