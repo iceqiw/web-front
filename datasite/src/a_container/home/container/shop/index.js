@@ -94,9 +94,9 @@ export default class Shop extends React.Component {
                       <p>楼层：{item.floor}</p>
                       <p>面积：{item.acreage+"平米"}</p>
                       <p>介绍：{item.name}({item.datetime})</p>
-                      <Button type="danger" onClick={this.delHouse.bind(this,item.id)}>删除</Button>
                     </Card>
                   </a>
+                  <Button type="danger" onClick={this.delHouse.bind(this,item.id)}>删除</Button>
                 </div>
               </Col>
             ))}
