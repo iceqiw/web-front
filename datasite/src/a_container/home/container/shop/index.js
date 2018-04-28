@@ -83,7 +83,7 @@ export default class Shop extends React.Component {
                
                   <p>{item.price+"（元/平米）"}</p>
                       <Meta
-                        title={item.price_total+"平米"}
+                        title={item.acreage+"平米"}
                         description={item.name  }
                       />
                       <em>{item.village}</em>
