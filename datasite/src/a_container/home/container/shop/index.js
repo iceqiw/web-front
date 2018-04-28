@@ -61,7 +61,6 @@ export default class Shop extends React.Component {
     this.props.actions.actIndex({ pn: 1 })
     this.props.actions.actSearch()
   }
-
   render() {
     return (
       <div>
@@ -81,15 +80,17 @@ export default class Shop extends React.Component {
               <Col key={index} xs={24} md={6}>
                 <div style={{ background: '#fff', margin: 12 }} >
                 <a href={item.link} >
-                <Card title={item.price_total+"万"}>
                
+                <Card title={item.price_total+"万"}>
                   <p>{item.price+"（元/平米）"}</p>
-                      <Meta
-                        title={item.acreage+"平米"}
-                        description={item.name  }
-                      />
-                      <em>{item.village}</em>
+                  <p>{item.rent+"(元/月)"}</p>
+                  <Meta
+                    title={item.acreage+"平米"}
+                    description={item.name  }
+                  />
+                  <em>{item.village}</em>
                 </Card>
+               
                 </a>
                 </div>
               </Col>
