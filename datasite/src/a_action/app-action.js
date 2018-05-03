@@ -63,14 +63,13 @@ export const actVillageList = (params = {}) => async dispatch => {
 
 export const actDelHouse = (params = {}) => async dispatch => {
   try {
-    const d = await Fetchapi.newFetchDel("/api/ds/info/"+params.id);
+    await Fetchapi.newFetchDel("/api/ds/info/"+params.id);
     const res = await Fetchapi.newFetchGet("/api/ds/page/1/10");
     dispatch({
       type: "Page::items",
       payload: res.data
     });
     message.info("删除成功");
-    return res.data;
   } catch (err) {
     message.error("服务器开小差了");
   }
