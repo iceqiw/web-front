@@ -9,12 +9,14 @@ import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 
 import appReducer from "./app-reducer";
+import analysisReducer from "./analysis-reducer";
 
 const RootReducer = combineReducers({
   // 注意一定要加上routing: routerReducer 这是用于redux和react-router的连接
   routing: routerReducer,
   // 其他自定义的reducer
-  app: appReducer // 这里的命名，会成为store命名空间，取不同store区域中的值时，需指定不同的命名空间
+  app: appReducer,
+  analysis: analysisReducer // 这里的命名，会成为store命名空间，取不同store区域中的值时，需指定不同的命名空间
 });
 
 export default RootReducer;

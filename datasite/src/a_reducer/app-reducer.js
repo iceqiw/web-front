@@ -1,5 +1,5 @@
 /** app-reducer **/
-import P from "prop-types";
+
 /** store中的初始值 **/
 const initState = {
   pageSize: 20, // 页面测试数据 初始值0
