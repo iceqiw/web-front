@@ -12,7 +12,7 @@ import P from "prop-types";
     actions: bindActionCreators({}, dispatch)
   })
 )
-export default class Page3 extends React.Component {
+export default class Analysis extends React.Component {
   static propTypes = {
     location: P.any,
     history: P.any
