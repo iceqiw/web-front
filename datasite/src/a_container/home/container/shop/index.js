@@ -63,24 +63,6 @@ export default class Shop extends React.Component {
   render() {
     return (
       <div>
-        <Row type="flex" align="middle" justify="center">
-            <Col xs={24} md={12}>
-              <Carousel  className={styles.mycarousel2} autoplay>
-                {this.props.villages.map((village, index) => (
-                  <div key={index} ><h2>{village}</h2></div>
-                ))}
-              </Carousel>
-            </Col>
-        </Row>
-        <Row type="flex" align="middle" justify="center">
-          <Col  onClick={this.onChange.bind(this,1)}  xs={24} md={12}>
-            <Carousel className={styles.mycarousel} autoplay>
-              <div><h2>单价MAX:{this.props.totalinfo.max}(元/平米)</h2></div>
-              <div><h2>单价MIN:{this.props.totalinfo.min}(元/平米)</h2></div>
-              <div><h2>单价AVG:{this.props.totalinfo.min}(元/平米)</h2></div>
-            </Carousel>
-          </Col>
-        </Row>
         <div style={{ background: '#fff', margin: 24 }}>
           <Row type="flex" align="middle" justify="start" >
             {this.props.content.map((item, index) => (
