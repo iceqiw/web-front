@@ -1,4 +1,4 @@
-export const charDataA = (datasource = {}) => {
+export const charDataA = (datasource) => {
   console.log(datasource)
   const option = {
     title: { text: '房价' },
