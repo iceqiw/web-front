@@ -158,7 +158,7 @@ export default class Analysis extends React.Component {
   render() {
     return <div> 
        <Row type="flex" align="middle" justify="center">
-            <Col xs={24} md={12}>
+            <Col xs={24} md={24}>
             <div ref={(c) => { this.charts = c; }} style={{ width: '100%' , height: '600px' }}></div>
             </Col>
         </Row>
