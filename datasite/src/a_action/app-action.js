@@ -24,7 +24,7 @@ export const actLogin = (params = {}) => async dispatch => {
 /** 异步请求测试 fetch **/
 export const actIndex = (params = {}) => async dispatch => {
   try {
-    const res = await Fetchapi.newFetchGet("/api/ds/page/"+params.pn+"/10");
+    const res = await Fetchapi.newFetchGet("/api/ds/page/" + params.pn + "/10");
     dispatch({
       type: "Page::items",
       payload: res.data
@@ -63,7 +63,7 @@ export const actVillageList = (params = {}) => async dispatch => {
 
 export const actDelHouse = (params = {}) => async dispatch => {
   try {
-    await Fetchapi.newFetchDel("/api/ds/info/"+params.id);
+    await Fetchapi.newFetchDel("/api/ds/info/" + params.id);
     const res = await Fetchapi.newFetchGet("/api/ds/page/1/10");
     dispatch({
       type: "Page::items",
