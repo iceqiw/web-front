@@ -14,6 +14,7 @@ import 'echarts/lib/chart/line';
 import 'echarts/lib/component/tooltip';
 import 'echarts/lib/component/title';
 import 'echarts/lib/component/legend';
+import 'echarts/theme/shine';
 // ==================
 // 组件
 // ==================
@@ -46,7 +47,7 @@ export default class Analysis extends React.Component {
   }
 
   showChart() {
-    const myChartA = echarts.init(this.Acharts);
+    const myChartA = echarts.init(this.Acharts, 'shine');
     this.props.actions.actHouseData().then(res => {
       const opt = charDataA(res);
       myChartA.setOption(opt);

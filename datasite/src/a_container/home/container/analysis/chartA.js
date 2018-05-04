@@ -71,6 +71,9 @@ export const charDataA = (datasource = {}) => {
     }, {
       name: '租金',
       type: 'line',
+      lineStyle: {
+        type: 'dashed'
+      },
       yAxisIndex: 3,
       smooth: true,//折线图是趋缓的
       data: datasource.map((a) => a.rent)
