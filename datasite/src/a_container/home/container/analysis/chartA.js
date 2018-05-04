@@ -52,8 +52,9 @@ export const charDataA = (datasource = {}) => {
       }],
     series: [{
       name: '总价',
-      type: 'bar',
+      type: 'line',
       yAxisIndex: 0,
+      smooth: true,//折线图是趋缓的
       data: datasource.map((a) => a.price_total)
     }, {
       name: '面积',
@@ -63,7 +64,7 @@ export const charDataA = (datasource = {}) => {
       data: datasource.map((a) => a.acreage)
     }, {
       name: '单价',
-      type: 'line',
+      type: 'bar',
       yAxisIndex: 2,
       smooth: true,//折线图是趋缓的
       data: datasource.map((a) => a.price)
