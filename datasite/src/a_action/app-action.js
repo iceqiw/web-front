@@ -24,7 +24,7 @@ export const actLogin = (params = {}) => async dispatch => {
 /** 异步请求测试 fetch **/
 export const actIndex = (params = {}) => async dispatch => {
   try {
-    const res = await Fetchapi.newFetchGet("/api/ds/page/" + params.pn + "/10");
+    const res = await Fetchapi.newFetchGet("/api/ds/house/page/" + params.pn + "/10");
     dispatch({
       type: "Page::items",
       payload: res.data
@@ -37,7 +37,7 @@ export const actIndex = (params = {}) => async dispatch => {
 
 export const actSearch = (params = {}) => async dispatch => {
   try {
-    const res = await Fetchapi.newFetchGet("/api/ds/totalInfo");
+    const res = await Fetchapi.newFetchGet("/api/ds/house/totalInfo");
     dispatch({
       type: "Total::info",
       payload: res.data
@@ -48,23 +48,10 @@ export const actSearch = (params = {}) => async dispatch => {
   }
 };
 
-export const actVillageList = (params = {}) => async dispatch => {
-  try {
-    const res = await Fetchapi.newFetchGet("/api/ds/villages");
-    dispatch({
-      type: "Village::list",
-      payload: res.data
-    });
-    return res.data;
-  } catch (err) {
-    message.error("服务器开小差了");
-  }
-};
-
 export const actDelHouse = (params = {}) => async dispatch => {
   try {
-    await Fetchapi.newFetchDel("/api/ds/info/" + params.id);
-    const res = await Fetchapi.newFetchGet("/api/ds/page/1/10");
+    await Fetchapi.newFetchDel("/api/ds/house/info/" + params.id);
+    const res = await Fetchapi.newFetchGet("/api/ds/house/page/1/10");
     dispatch({
       type: "Page::items",
       payload: res.data

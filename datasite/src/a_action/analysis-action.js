@@ -9,7 +9,7 @@ import { message } from "antd";
 
 export const actHouseData = (params = {}) => async dispatch => {
   try {
-    const res = await Fetchapi.newFetchGet("/api/ds/all");
+    const res = await Fetchapi.newFetchGet("/api/ds/house/all");
     dispatch({
       type: "ANA::house",
       payload: res.data

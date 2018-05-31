@@ -11,7 +11,7 @@ const { Meta } = Card;
 // ==================
 // 本页面所需actions
 // ==================
-import { actIndex, actSearch, actVillageList, actDelHouse } from "../../../../a_action/app-action";
+import { actIndex, actSearch, actDelHouse } from "../../../../a_action/app-action";
 
 import styles from "./index.less";
 // ==================
@@ -27,7 +27,7 @@ import styles from "./index.less";
     totalinfo: state.app.totalinfo
   }),
   dispatch => ({
-    actions: bindActionCreators({ actIndex, actSearch, actVillageList, actDelHouse }, dispatch)
+    actions: bindActionCreators({ actIndex, actSearch, actDelHouse }, dispatch)
   })
 )
 export default class Shop extends React.Component {
@@ -48,7 +48,6 @@ export default class Shop extends React.Component {
   componentWillMount() {
     this.props.actions.actIndex({ pn: 1 })
     this.props.actions.actSearch()
-    this.props.actions.actVillageList()
   }
 
   onChange = (pageNumber) => {
@@ -68,7 +67,7 @@ export default class Shop extends React.Component {
             {this.props.content.map((item, index) => (
               <Col key={index} xs={24} md={6}>
                 <div style={{ background: '#fff', margin: 12 }} >
-                  <Card title={item.price_total + "万"}>
+                  <Card title={item.priceTotal + "万"}>
                     <p>单价：{item.price + "(元/平米)"}</p>
                     <p>租金：{item.rent + "(元/月)"}</p>
                     <p>小区：{item.village}</p>
